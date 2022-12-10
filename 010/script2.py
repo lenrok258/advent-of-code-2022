@@ -12,7 +12,6 @@ X = 1       # position of the middle of the sprite "▓▓▓"
 instr_pointer = 0
 instr_in_progress = False
 
-signal_strengths = []
 display = [['.' for _ in range(40)] for _ in range(6)]
 
 while True:
@@ -27,9 +26,6 @@ while True:
 
     if pixel_being_drawn in sprite_positions:
         display_row[pixel_being_drawn] = "▓"
-
-    if (cycle in [20, 60, 100, 140, 180, 220]):
-        signal_strengths.append(X * cycle)
 
     instr_name = instr[0]
     if instr_name == "noop":    
