@@ -1,7 +1,7 @@
 import math
 
 # test: 
-# input: 
+# input: PAPKFKEJ
 
 lines = open('input.txt', 'r').read().splitlines()
 instructions = [i.split(" ") for i in lines]

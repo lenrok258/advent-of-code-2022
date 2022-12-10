@@ -1,10 +1,10 @@
 # test: 
-# input: 
+# input: 14060
 
 lines = open('input.txt', 'r').read().splitlines()
 instructions = [i.split(" ") for i in lines]
 
-cycle, X = 1
+cycle, X = 1, 1
 
 instr_pointer = 0
 instr_in_progress = False
