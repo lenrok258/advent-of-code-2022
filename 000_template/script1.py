@@ -1,5 +1,7 @@
+from sys import argv
+
 # test: 
 # input: 
 
-lines = open('input_test.txt', 'r').read().splitlines()
+lines = open(argv[1], 'r').read().splitlines()
 
