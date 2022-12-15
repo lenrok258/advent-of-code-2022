@@ -1,55 +1,45 @@
-from collections import defaultdict
 from sys import argv
+import re
 
-# test: 
-# input: 873
+# test: 26
+# input: 200 too low
 
-lines = [_.split(" -> " ) for _ in  open(argv[1], 'r').read().splitlines()]
-rock_paths = [[[int(_) for _ in _.split(",")] for _ in l] for l in lines]
+lines = open(argv[1], 'r').read().splitlines()
+lines = [re.split("Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)", l) for l in lines]
 
-cave = dict()
+def distance(fromm, to):
+    return abs(fromm[0] - to[0]) + abs(fromm[1] - to[1])
 
-for p in rock_paths:
-    prv_r = p[0]
-    for curr_r in p[1:]:
-        if prv_r[0] != curr_r[0]:
-            from_x, to_x = sorted([prv_r[0], curr_r[0]])
-            y = prv_r[1]
-            for x in range(from_x, to_x + 1):
-                cave[(x, y)] = '#'
-        if prv_r[1] != curr_r[1]:
-            from_y, to_y = sorted([prv_r[1], curr_r[1]])
-            x = prv_r[0]
-            for y in range(from_y, to_y + 1):
-                cave[(x, y)] = '#'
-        prv_r = curr_r
+sensors = [((int(l[1]), int(l[2])), (int(l[3]), int(l[4]))) for l in lines]
+sensors = [(s[0], s[1], distance(s[0], s[1])) for s in sensors]
 
-rock_bottom = max([key[1] for key in cave.keys()])
+for s in sensors:
+    print(s)
 
-def pour_sand(cave):
-    grains = 0
-    while True:
-        s = (500, 0)
-        while True:
-            if s[1] > rock_bottom:
-                return grains
+def in_distance_of_any(p_coor, sensors):
+    for s in sensors:
+        s_coor = s[0]
+        b_coor = s[1]
+        s_dist = s[2]
+        p_dist = distance(s_coor, p_coor)
+        
+        if p_coor == b_coor:
+            return False
 
-            m_d = (s[0], s[1] + 1)
-            m_l = (s[0] - 1, s[1] + 1)
-            m_r = (s[0] + 1, s[1] + 1)
+        if p_dist <= s_dist:
+            return True
+    return False
 
-            if m_d not in cave:
-                s = m_d
-                continue
-            if m_l not in cave:
-                s = m_l
-                continue
-            if m_r not in cave:
-                s = m_r
-                continue
+print(sensors)
 
-            cave[s] = "o"
-            grains += 1
-            break
+x_from = min([s[0][0] - s[2] for s in sensors])
+x_to = max([s[0][0] + s[2] for s in sensors])
+print(f"from {x_from}, to {x_to}")
 
-print(pour_sand(cave))
+in_dist_count = 0
+for x in range(x_from, x_to):
+    if x % 100_000 == 0:
+        print(x)
+    if in_distance_of_any((x, 10), sensors):
+        in_dist_count += 1
+print(in_dist_count)
