@@ -1,0 +1,24 @@
+|sx - x| + |sy - y| > sd
+
+1. sx - x + sy - y > sd
+2. x - sx + sy - y > sd
+3. sx - x + y - sy > sd
+4. x - sx + y - sy > sd
+
+1.  sx + -x +  sy + -y > sd
+2. -sx +  x +  sy + -y > sd
+3.  sx + -x + -sy +  y > sd
+4. -sx +  x + -sy +  y > sd
+
+1.  sx +  sy - sd >  x +  y
+2. -sx +  sy - sd > -x +  y
+3.  sx + -sy - sd >  x + -y
+4. -sx + -sy - sd > -x + -y
+
+1.  sx + sy - sd >  x + y
+2.  sy - sx - sd >  y - x
+3.  sx - sy - sd >  x - y
+4.  sx + sy + sd <  x + y
+
+5. x > 0
+6. y > 0
