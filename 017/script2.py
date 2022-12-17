@@ -78,9 +78,12 @@ def add_rock(cave, rock):
         cave[r] = "#"
 
 
-# Bellow code was used to discover cycles, compute height before cycles start, 
-# compute height in the remainder at parial cycle at the end of 1000000000000 rocks.
+# Bellow code was used to discover cycles, compute height before first cycle start, 
+# compute height for the remainder at parial cycle at the end of 1000000000000 rocks.
 # No need to automate.
+#
+# Note: code detects cycles for "clean" floors but should any repeating state. 
+# Luckily floor was enought.
 #
 # Calculations in notes.txt
 
