@@ -23,6 +23,7 @@ def empty_negihbors(c, obsidian):
 
 # check if it is posible to move from given point to the outside of the bounding box
 # if so - water and steam are able to get to this point
+# Recusion would be faster executiontime-wise
 @lru_cache(maxsize=None)
 def available_path_beyond_bbox(coor):
     global obsidian, bbox
@@ -31,7 +32,7 @@ def available_path_beyond_bbox(coor):
         if not queue:
             return False
         
-        c = queue.pop(0)
+        c = queue.pop(0) # BFS vs DFS - does not mattter
         if c[0] < bbox[0][0] or c[1] < bbox[0][1] or c[2] < bbox[0][2] \
             or c[0] > bbox[1][0] or c[1] > bbox[1][1] or c[2] > bbox[1][2]:
             return True
