@@ -1,0 +1,40 @@
+Robots: ore -> clay -> obsidian -> geode
+
+Starting point: 1 ore robot
+
+ore robo:           ore 
+clay robo:          ore
+obsidian robo:      ore & clay
+geode robo:         ore & obsidian
+
+Blueprint 1:
+  Each ore robot costs 4 ore.
+  Each clay robot costs 2 ore.
+  Each obsidian robot costs 3 ore and 14 clay.
+  Each geode robot costs 2 ore and 7 obsidian.
+
+Blueprint 2:
+  Each ore robot costs 2 ore.
+  Each clay robot costs 3 ore.
+  Each obsidian robot costs 3 ore and 8 clay.
+  Each geode robot costs 3 ore and 12 obsidian.
+
+tree path: [action1, action2... action23]
+
+possible actions: 
+    "nothing", 
+    "create_ore_robo", 
+    "create_clay_robo", 
+    "create_obsidian_robo", 
+    "create_geode_robo"
+
+
+0,0,2,0,2,0,2,0,0,0,3,2,0,0,3,0,0,4,0,0,4,0,0,0
+
+
+Numer of search_recursive calls = 4_992_357
+Numer of search_recursive calls = 4_041_163
+Numer of search_recursive calls = 6_998_278
+Numer of search_recursive calls = 5_135_978
+
+Numer of search_recursive calls = 2_960_053
