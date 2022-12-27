@@ -32,20 +32,20 @@ def toQuinary(dec):
 
 def toSnafu(quinary):
     snafu = ""
-    reminder = 0
+    carry = 0
     for c in reversed(quinary):
-        if reminder != 0:
-            c = str(int(c) + reminder)
-            reminder = 0
+        if carry != 0:
+            c = str(int(c) + carry)
+            carry = 0
         if c == "3":
             snafu += "="
-            reminder = 1
+            carry = 1
         elif c == "4":
             snafu += "-"
-            reminder = 1
+            carry = 1
         elif c == "5":
             snafu += "0"
-            reminder = 1
+            carry = 1
         else:
             snafu += c
     return "".join(reversed(snafu))
